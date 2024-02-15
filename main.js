@@ -85,6 +85,8 @@ posts.forEach(currentPost=>{
     // creazione elemento dell'immagine del post
     const postImageEl = document.createElement("img");
 
+    let like;
+
 
 
     for(let key in currentPost){
@@ -110,6 +112,12 @@ posts.forEach(currentPost=>{
 
             // setto src dell'immagine del post
             postImageEl.src = currentPost[key];
+            console.log(currentPost[key]);
+
+        }else if(key == "likes"){
+
+            // inserimento del numero di like del post
+            like = currentPost[key];
             console.log(currentPost[key]);
 
         }
@@ -147,9 +155,48 @@ posts.forEach(currentPost=>{
 
 
 
+    const likeCounterEl = document.createElement("div");
+    likeCounterEl.classList.add("likes__counter");
+    likeCounterEl.innerHTML = `Piace a <b class="js-likes-counter">${like} </b>persone`;
+
+
+
+    const likeButtonLabelEl= document.createElement("spna");
+    likeButtonLabelEl.classList.add("like-button__label");
+    likeButtonLabelEl.innerText="Mi Piace";
+
+
+    const likeIconEl = document.createElement("i");
+    likeIconEl.classList.add("like-button__icon","fas","fa-thumbs-up");
+    likeIconEl.ariaHidden="true";
+
+
+    const likeButtonEl= document.createElement("a");
+    likeButtonEl.classList.add("like-button", "js-like-button");
+    likeButtonEl.href="#";
+    likeButtonEl.append(likeIconEl, likeButtonLabelEl);
+
+
+
+    const likeCTAEl= document.createElement("div");
+    likeCTAEl.classList.add("likes__cta");
+    likeCTAEl.append(likeButtonEl);
+
+
+    const likeBoxEl = document.createElement("div");
+    likeBoxEl.classList.add("likes","js-likes");
+    likeBoxEl.append(likeCTAEl, likeCounterEl);
+
+
+    const postFooterEl= document.createElement("div");
+    postFooterEl.classList.add("post__footer");
+    postFooterEl.append(likeBoxEl);
+
+
+
     const postEl = document.createElement("div");
     postEl.classList.add("post");
-    postEl.append(postHeaderEl,contentEl,postImageBoxEl);
+    postEl.append(postHeaderEl,contentEl,postImageBoxEl, postFooterEl);
 
     postList.append(postEl);
 
