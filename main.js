@@ -91,9 +91,9 @@ posts.forEach(currentPost=>{
         if(key=="author"){
             
             // setto src dell'immagine profilo
-            imgProfileEl.src = key.image;
+            imgProfileEl.src = currentPost[key].image;
             // inserisco il nome dell'autone del post
-            authorEl.innerText = key.name;
+            authorEl.innerText = currentPost[key].name;
 
             console.log(key.image, key.name);
 
