@@ -55,3 +55,111 @@ const posts = [
         "created": "2021-03-05"
     }
 ];
+
+
+
+
+// Milestone 2 - Prendendo come riferimento il layout di esempio presente
+// nell'html, stampiamo i post del nostro feed.
+
+const postList = document.querySelector("#container");
+
+posts.forEach(currentPost=>{
+
+    // creazione immagine del profilo
+    const imgProfileEl= document.createElement("img");
+    imgProfileEl.classList.add("profile-pic");
+
+    // creazione elemento per il nome dell'autore
+    const authorEl= document.createElement("div");
+    authorEl.classList.add("post-meta__author");
+
+    // creazione elemento della data della pubblicazione del post
+    const dateEl = document.createElement("div");
+    dateEl.classList.add("post-meta__time");
+
+    // creazione elemento della didascalia del post
+    const contentEl = document.createElement("div");
+    contentEl.classList.add("post__text");
+
+    // creazione elemento dell'immagine del post
+    const postImageEl = document.createElement("img");
+
+
+
+    for(let key in currentPost){
+        if(key=="author"){
+            
+            // setto src dell'immagine profilo
+            imgProfileEl.src = key.image;
+            // inserisco il nome dell'autone del post
+            authorEl.innerText = key.name;
+
+            console.log(key.image, key.name);
+
+        }else if(key=="created"){
+
+            // inserisco la data nell'elemento
+            dateEl.innerText = currentPost[key];
+            console.log(currentPost[key]);
+
+        }else if(key="content"){
+
+            // inserimento della didascalia del post 
+            contentEl.innerText = currentPost[key];
+            console.log(currentPost[key]);
+
+        }else if(key == "media"){
+
+            // setto src dell'immagine del post
+            postImageEl.src = currentPost[key];
+            console.log(currentPost[key]);
+
+        }
+    }
+
+
+    // creazione del contenitore dell'immagine del profilo
+    const postMeta__iconEl = document.createElement("div");
+    postMeta__iconEl.classList.add("post-meta__icon");
+    postMeta__iconEl.append(imgProfileEl);
+
+
+    // creazione info del post
+    const postMeta__dataEl = document.createElement("div");
+    postMeta__dataEl.classList.add("post-meta__data");
+    postMeta__dataEl.append(authorEl, dateEl);
+
+
+    // ceazione del contenitore delle info del post
+    const postMetaEl = document.createElement("div");
+    postMetaEl.classList.add("post-meta");
+    postMetaEl.append(postMeta__iconEl,postMeta__dataEl);
+
+
+    // creazione header del post
+    const postHeaderEl= document.createElement("div");
+    postHeaderEl.classList.add("post__header");
+    postHeaderEl.append(postMetaEl);
+
+
+    // creazione del box dell'immagine del post
+    const postImageBoxEl = document.createElement("div");
+    postImageBoxEl.classList.add("post__image");
+    postImageBoxEl.append(postImageEl);
+
+
+
+    const postEl = document.createElement("div");
+    postEl.classList.add("post");
+    postEl.append(postHeaderEl,contentEl,postImageBoxEl);
+
+    postList.append(postEl);
+
+
+
+
+
+
+
+});
