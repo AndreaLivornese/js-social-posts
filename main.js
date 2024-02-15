@@ -88,6 +88,7 @@ posts.forEach(currentPost=>{
 
 
     for(let key in currentPost){
+        console.log(key);
         if(key=="author"){
             
             // setto src dell'immagine profilo
@@ -95,19 +96,15 @@ posts.forEach(currentPost=>{
             // inserisco il nome dell'autone del post
             authorEl.innerText = currentPost[key].name;
 
-            console.log(key.image, key.name);
-
         }else if(key=="created"){
 
             // inserisco la data nell'elemento
             dateEl.innerText = currentPost[key];
-            console.log(currentPost[key]);
 
-        }else if(key="content"){
+        }else if(key=="content"){
 
             // inserimento della didascalia del post 
             contentEl.innerText = currentPost[key];
-            console.log(currentPost[key]);
 
         }else if(key == "media"){
 
