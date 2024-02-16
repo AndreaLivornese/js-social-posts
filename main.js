@@ -38,7 +38,7 @@ const posts = [
         "media": "https://unsplash.it/600/400?image=24",
         "author": {
             "name": "Luca Formicola",
-            "image": ""
+            "image": null
         },
         "likes": 56,
         "created": "2021-04-03"
@@ -85,6 +85,13 @@ posts.forEach(currentPost=>{
     const contentEl = document.createElement("div");
     contentEl.classList.add("post__text");
 
+
+
+    // creazione del contenitore dell'immagine del profilo
+    const postMeta__iconEl = document.createElement("div");
+    postMeta__iconEl.classList.add("post-meta__icon", "profile-pic-default");
+    postMeta__iconEl.append(imgProfileEl);
+
     // creazione elemento dell'immagine del post
     const postImageEl = document.createElement("img");
 
@@ -96,7 +103,11 @@ posts.forEach(currentPost=>{
         if(key=="author"){
             
             // setto src dell'immagine profilo
-            imgProfileEl.src = currentPost[key].image;
+            if(currentPost[key].image != null){
+                imgProfileEl.src = currentPost[key].image;
+            }else{
+                postMeta__iconEl.innerHTML = `<span> ${defoultIconPorfile(currentPost.author.name)}`;
+            }
             // inserisco il nome dell'autone del post
             authorEl.innerText = currentPost[key].name;
 
@@ -124,10 +135,6 @@ posts.forEach(currentPost=>{
     }
 
 
-    // creazione del contenitore dell'immagine del profilo
-    const postMeta__iconEl = document.createElement("div");
-    postMeta__iconEl.classList.add("post-meta__icon");
-    postMeta__iconEl.append(imgProfileEl);
 
 
     // creazione info del post
@@ -245,4 +252,13 @@ function italianFormatDate(date){
 
     
 
+}
+
+
+
+function defoultIconPorfile(username){
+
+    const fullname = username.split(" ");
+
+    return `${fullname[0][0]}${fullname[1][0]}`;
 }
