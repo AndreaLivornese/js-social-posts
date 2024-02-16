@@ -222,6 +222,8 @@ posts.forEach(currentPost=>{
 
             console.log(postLiked);
 
+            likeCounterEl.innerHTML = `Piace a <b class="js-likes-counter">${++like} </b>persone`;
+
         }else{
             // rimozione della classe per la decorazione del tasto mi piace
             likeButtonEl.classList.remove("like-button--liked");
@@ -229,6 +231,8 @@ posts.forEach(currentPost=>{
             postLiked.splice(postLiked.indexOf(currentPost.id),1);
 
             console.log(postLiked);
+
+            likeCounterEl.innerHTML = `Piace a <b class="js-likes-counter">${--like} </b>persone`;
 
         }
 
@@ -262,3 +266,4 @@ function defoultIconPorfile(username){
 
     return `${fullname[0][0]}${fullname[1][0]}`;
 }
+
