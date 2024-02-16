@@ -38,7 +38,7 @@ const posts = [
         "media": "https://unsplash.it/600/400?image=24",
         "author": {
             "name": "Luca Formicola",
-            "image": null
+            "image": ""
         },
         "likes": 56,
         "created": "2021-04-03"
@@ -63,6 +63,9 @@ const posts = [
 // nell'html, stampiamo i post del nostro feed.
 
 const postList = document.querySelector("#container");
+
+// conterrà gli id dei post a cui hai messo mi piace
+const postLiked = [];
 
 posts.forEach(currentPost=>{
 
@@ -90,7 +93,6 @@ posts.forEach(currentPost=>{
 
 
     for(let key in currentPost){
-        console.log(key);
         if(key=="author"){
             
             // setto src dell'immagine profilo
@@ -112,13 +114,11 @@ posts.forEach(currentPost=>{
 
             // setto src dell'immagine del post
             postImageEl.src = currentPost[key];
-            console.log(currentPost[key]);
 
         }else if(key == "likes"){
 
             // inserimento del numero di like del post
             like = currentPost[key];
-            console.log(currentPost[key]);
 
         }
     }
@@ -202,7 +202,30 @@ posts.forEach(currentPost=>{
 
 
 
+    likeButtonEl.addEventListener("click", (e)=>{
+        e.preventDefault();
+        console.log("click")
 
+       
+        if(! likeButtonEl.classList.contains("like-button--liked")){
+            // aggiunta classe per la decorazione del tasto mi piace 
+            likeButtonEl.classList.add("like-button--liked");
+
+            postLiked.push(currentPost.id);
+
+            console.log(postLiked);
+
+        }else{
+            // rimozione della classe per la decorazione del tasto mi piace
+            likeButtonEl.classList.remove("like-button--liked");
+
+            postLiked.splice(postLiked.indexOf(currentPost.id),1);
+
+            console.log(postLiked);
+
+        }
+
+    })
 
 
 
