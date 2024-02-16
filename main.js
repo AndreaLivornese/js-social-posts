@@ -103,7 +103,7 @@ posts.forEach(currentPost=>{
         }else if(key=="created"){
 
             // inserisco la data nell'elemento
-            dateEl.innerText = currentPost[key];
+            dateEl.innerText = italianFormatDate(currentPost[key]);
 
         }else if(key=="content"){
 
@@ -230,3 +230,19 @@ posts.forEach(currentPost=>{
 
 
 });
+
+
+
+function italianFormatDate(date){
+
+    const newDate = new Date(date);
+    const day = newDate.getDay().toString();
+    console.log(day)
+    const month = newDate.getMonth().toString();
+    const year = newDate.getFullYear().toString();
+
+    return `${day.padStart(2, '0')}-${month.padStart(2, '0')}-${year}`;
+
+    
+
+}
